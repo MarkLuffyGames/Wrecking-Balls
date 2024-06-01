@@ -79,11 +79,13 @@ public class Ball : MonoBehaviour
     public void ShootBall(Vector3 direction)
     {
         targets.Clear();
-        if (Physics.SphereCast(transform.position, 0.2f, direction, out hitInfo, raycastDistance))
+        if (Physics.SphereCast(transform.position, 0.1f, direction, out hitInfo, raycastDistance))
         {
             Vector3 normal = hitInfo.normal;
             reflectDirection = Vector3.Reflect(direction, normal);
-            point = hitInfo.point;
+            point = transform.position + direction * hitInfo.distance;
+
+            Debug.Log(hitInfo.distance);
             //Mantiene la bola en la misma posision en el eje z.
             point = new Vector3(point.x, point.y, ballPosZ);
             reflectDirection = new Vector3(reflectDirection.x, reflectDirection.y, 0);
@@ -95,7 +97,6 @@ public class Ball : MonoBehaviour
 
             target = hitInfo.collider.gameObject;
             targets.Add(target);
-            Debug.DrawRay(hitInfo.point, reflectDirection, Color.red);
         }
     }
      
@@ -161,8 +162,7 @@ public class Ball : MonoBehaviour
                     }
                     subordinates.Clear();
                 }
-                //Si el objetivo es un potenciador lo recoge y sigue su tra
-                //yectoria.
+                //Si el objetivo es un potenciador lo recoge y sigue su trayectoria.
                 else if (target.CompareTag("PowerUp"))
                 {
                     target.GetComponent<PowerUp>().GetPowerUp();
@@ -196,27 +196,27 @@ public class Ball : MonoBehaviour
     //Lanza un raycast igual al ultimo para comprobar si el objetivo sigue siendo el mismo.
     public void LastRay()
     {
-        if (Physics.SphereCast(lastRayPosition,0.2f, lastRayDirection, out hitInfo, raycastDistance))
+        if (Physics.SphereCast(lastRayPosition,0.1f, lastRayDirection, out hitInfo, raycastDistance))
         {
             Vector3 normal = hitInfo.normal;
 
             reflectDirection = Vector3.Reflect(lastRayDirection, normal);
-            point = hitInfo.point;
+            point = lastRayPosition + lastRayDirection * hitInfo.distance;
+
+            Debug.Log(hitInfo.distance);
             //Mantiene la bola en la misma posision en el eje z.
             point = new Vector3(point.x, point.y, ballPosZ);
             reflectDirection = new Vector3(reflectDirection.x, reflectDirection.y, 0);
 
             target = hitInfo.collider.gameObject;
             targets.Add(target);
-            Debug.DrawRay(hitInfo.point, reflectDirection, Color.red);
         }
-        
     }
     public void NewPoint()
     {
-        if (Physics.SphereCast(hitInfo.point, 0.2f, reflectDirection, out hitInfo, raycastDistance))
+        if (Physics.SphereCast(transform.position, 0.1f, reflectDirection, out hitInfo, raycastDistance))
         {
-            lastRayPosition = hitInfo.point;
+            lastRayPosition = transform.position;
             lastRayDirection = reflectDirection;
 
             Vector3 normal = hitInfo.normal;
@@ -224,13 +224,14 @@ public class Ball : MonoBehaviour
             reflectDirection = new Vector3(reflectDirection.x, reflectDirection.y, 0);
             if (isMoving)
             {
-                point = hitInfo.point;
+                point = lastRayPosition + lastRayDirection * hitInfo.distance;
+                Debug.Log(hitInfo.distance);
+                
                 //Mantiene la bola en la misma posision en el eje z.
                 point = new Vector3(point.x, point.y, ballPosZ);
             }
             target = hitInfo.collider.gameObject;
             targets.Add(target);
-            Debug.DrawRay(hitInfo.point, reflectDirection, Color.red);
         }
     }
 
@@ -285,6 +286,11 @@ public class Ball : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(hitInfo.point, 0.1f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(lastRayPosition, 0.1f);
         // Set Gizmo color to red for the raycast beam
         Gizmos.color = Color.red;
         // Draw the raycast beam
@@ -292,7 +298,7 @@ public class Ball : MonoBehaviour
         // Set Gizmo color to blue for the normal bounce
         Gizmos.color = Color.blue;
         // Draw the normal bounce
-        Gizmos.DrawLine(hitInfo.point, reflectDirection+hitInfo.point);
+        Gizmos.DrawLine(point, reflectDirection + hitInfo.point);
 
        /* // Perform the raycast
         RaycastHit hit;

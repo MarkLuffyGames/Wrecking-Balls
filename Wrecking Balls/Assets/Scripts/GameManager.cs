@@ -266,8 +266,11 @@ public class GameManager : MonoBehaviour
                 if (hit.collider.gameObject.layer == 3)
                 {
                     // Obtén la dirección normalizada desde la posición actual de la bola hacia el punto de impacto
-                    direction = (hit.point - ballList[0].transform.position).normalized;
-                    direction.z = 0;
+                    Vector2 ballPos = ballList[0].transform.position;
+                    Vector2 hitPos = hit.point;
+
+                    direction = (hitPos - ballPos).normalized;
+                    Debug.Log(direction);
                     if (direction.y >= 0.2f) directionBall = direction;
                     shootingGuide.SetActive(true);
                     ShootingGuidePos();

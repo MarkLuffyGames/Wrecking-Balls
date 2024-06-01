@@ -33546,6 +33546,7 @@ MonoBehaviour:
   appearCube: {fileID: 8300000, guid: 3a78882a96449984da35dd72663aa742, type: 3}
   pressButton: {fileID: 8300000, guid: 90c6cc848d5ee7c468707cc9d2c5b9d0, type: 3}
   buyBall: {fileID: 8300000, guid: 4a7a91d2ee53e1341abd3592621d4472, type: 3}
+  destroyBlock: {fileID: 0}
 --- !u!4 &1540792829
 Transform:
   m_ObjectHideFlags: 0
