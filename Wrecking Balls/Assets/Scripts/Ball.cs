@@ -84,8 +84,6 @@ public class Ball : MonoBehaviour
             Vector3 normal = hitInfo.normal;
             reflectDirection = Vector3.Reflect(direction, normal);
             point = transform.position + direction * hitInfo.distance;
-
-            Debug.Log(hitInfo.distance);
             //Mantiene la bola en la misma posision en el eje z.
             point = new Vector3(point.x, point.y, ballPosZ);
             reflectDirection = new Vector3(reflectDirection.x, reflectDirection.y, 0);
@@ -202,8 +200,6 @@ public class Ball : MonoBehaviour
 
             reflectDirection = Vector3.Reflect(lastRayDirection, normal);
             point = lastRayPosition + lastRayDirection * hitInfo.distance;
-
-            Debug.Log(hitInfo.distance);
             //Mantiene la bola en la misma posision en el eje z.
             point = new Vector3(point.x, point.y, ballPosZ);
             reflectDirection = new Vector3(reflectDirection.x, reflectDirection.y, 0);
@@ -225,7 +221,6 @@ public class Ball : MonoBehaviour
             if (isMoving)
             {
                 point = lastRayPosition + lastRayDirection * hitInfo.distance;
-                Debug.Log(hitInfo.distance);
                 
                 //Mantiene la bola en la misma posision en el eje z.
                 point = new Vector3(point.x, point.y, ballPosZ);
