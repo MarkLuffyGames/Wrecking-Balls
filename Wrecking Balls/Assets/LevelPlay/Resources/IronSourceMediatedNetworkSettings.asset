@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: IronSourceMediatedNetworkSettings
   m_EditorClassIdentifier: 
   EnableAdmob: 1
-  AdmobAndroidAppId: 
+  AdmobAndroidAppId: ca-app-pub-2976918426150538~2989163136
   AdmobIOSAppId: 
