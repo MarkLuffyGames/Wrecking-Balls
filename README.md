@@ -14,3 +14,5 @@ Check your ranking on the leaderboard and compete with top players from around t
 Moreover, you'll be able to increase the ball launch speed if you feel it's too slow. 🚀
 
 Download "Wrecking Balls" now in Google Play Store and enjoy hours of block demolition fun! 🎮
+
+https://play.google.com/store/apps/details?id=com.MarkLuffyGames.WreckingBalls
