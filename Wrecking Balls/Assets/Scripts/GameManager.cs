@@ -270,7 +270,6 @@ public class GameManager : MonoBehaviour
                     Vector2 hitPos = hit.point;
 
                     direction = (hitPos - ballPos).normalized;
-                    Debug.Log(direction);
                     if (direction.y >= 0.2f) directionBall = direction;
                     shootingGuide.SetActive(true);
                     ShootingGuidePos();
@@ -347,7 +346,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("GameOver", 0);
             mainMenu.Invoke("ShowButton",2);
-            ads.Invoke("ShowInterstitial", 2);
+            //ads.Invoke("ShowInterstitial", 2);
             HideButton();
             camerasc.MoveCamera(0);
             player.SetPositionForShot(Vector3.zero);
@@ -695,7 +694,7 @@ public class GameManager : MonoBehaviour
         player.SetPositionForShot(ballList[0].transform.position);
         camerasc.MoveCamera(ballList[0].transform.position.x);
         level++;
-        if (level % 50 == 0) ads.ShowInterstitial();
+        //if (level % 50 == 0) ads.ShowInterstitial();
         if (level > record) PlayerPrefs.SetInt("record", level);
         record = PlayerPrefs.GetInt("record");
         Invoke("SpawnCube", 0.5f);

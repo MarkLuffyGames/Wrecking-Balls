@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+//using Unity.Services.LevelPlay;
 
 public class Ads : MonoBehaviour
-{
+{/*
 #if UNITY_ANDROID
     string appKey = "1bf0c438d";
 #elif UNITY_IPHONE
@@ -25,6 +26,7 @@ public class Ads : MonoBehaviour
 
         //Add AdInfo Banner Events
         IronSourceBannerEvents.onAdLoadedEvent += BannerOnAdLoadedEvent;
+        ILevelPlayBannerAd.OnAdLoaded += BannerOnAdLoadedEvent;
         IronSourceBannerEvents.onAdLoadFailedEvent += BannerOnAdLoadFailedEvent;
         IronSourceBannerEvents.onAdClickedEvent += BannerOnAdClickedEvent;
         IronSourceBannerEvents.onAdScreenPresentedEvent += BannerOnAdScreenPresentedEvent;
@@ -79,9 +81,10 @@ public class Ads : MonoBehaviour
     {
         IronSource.Agent.destroyBanner();
     }
-
-
+    */
+    
     /************* Banner AdInfo Delegates *************/
+    /*
     //Invoked once the banner has loaded
     void BannerOnAdLoadedEvent(IronSourceAdInfo adInfo)
     {
@@ -135,9 +138,10 @@ public class Ads : MonoBehaviour
             LoadInterstitial();
         }
     }
-
+    */
 
     /************* Interstitial AdInfo Delegates *************/
+    /*
     // Invoked when the interstitial ad was loaded succesfully.
     void InterstitialOnAdReadyEvent(IronSourceAdInfo adInfo)
     {
@@ -193,9 +197,11 @@ public class Ads : MonoBehaviour
             Debug.Log("rewarded not ready!!");
         }
     }
-
+    */
 
     /************* RewardedVideo AdInfo Delegates *************/
+
+    /*
     // Indicates that there’s an available ad.
     // The adInfo object includes information about the ad that was loaded successfully
     // This replaces the RewardedVideoAvailabilityChangedEvent(true) event
@@ -232,6 +238,7 @@ public class Ads : MonoBehaviour
     void RewardedVideoOnAdClickedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
     }
-
+    
     #endregion
+    */
 }
