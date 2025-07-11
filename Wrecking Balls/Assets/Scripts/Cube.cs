@@ -32,7 +32,7 @@ public class Cube : MonoBehaviour
 
         if (point == 0)
         {
-            if (gameManager.level % 10 == 0)
+            if (gameManager.level % 100 == 0)
             {
                 point = gameManager.level * 2;
             }
